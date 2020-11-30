@@ -9,14 +9,10 @@ import uuid
 # Create your views here.
 
 
-def blog_list(request):
-    return render(request, 'App_Blog/blog_list.html', context={})
-
-
 class CreateBlog(LoginRequiredMixin, CreateView):
     model = Blog
     template_name = 'App_Blog/create_blog.html'
-    fields = ('blog_title', 'blog_content', 'blog_image')
+    fields = ('blog_title', 'blog_content', 'blog_image',)
 
     def form_valid(self, form):
         blog_obj = form.save(commit=False)
@@ -25,3 +21,9 @@ class CreateBlog(LoginRequiredMixin, CreateView):
         blog_obj.slug = title.replace(" ", "-") + "-" + str(uuid.uuid4())
         blog_obj.save()
         return HttpResponseRedirect(reverse('index'))
+
+
+class BlogList(ListView):
+    context_object_name = 'blogs'
+    model = Blog
+    template_name = 'App_Blog/blog_list.html'
