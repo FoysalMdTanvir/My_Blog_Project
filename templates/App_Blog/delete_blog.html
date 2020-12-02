@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title_block %} {{blog.blog_title}}{% endblock %}
+{% block body_block %}
+<form method="POST">
+  {% csrf_token %}
+  <div class="alert alert-success">
+    Are you sure to delete this blog ?
+  </div>
+  <input type="submit" name="submit" value="Delete" class="btn btn-danger btn-sm"> <a href="{% url 'App_Blog:delete_blog' pk=blog.pk %}" </a>
+    <a href="{% url 'App_Blog:my_blogs' %}" class="btn btn-info btn-sm">Cancel</a>
+</form>
+
+{% endblock %}

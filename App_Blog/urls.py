@@ -8,4 +8,7 @@ urlpatterns = [
     path('details/(?P<slug>[-a-zA-Z0-9_]+)/$/', views.blog_details, name='blog_details'),
     path('liked/<pk>/', views.liked, name='liked_post'),
     path('unliked/<pk>/', views.unliked, name='unliked_post'),
+    path('my-blogs/', views.MyBlogs.as_view(), name='my_blogs'),
+    path('edit/<pk>/', views.UpdateBlog.as_view(), name='edit_blog'),
+    path('delete/<pk>/', views.DleteBlog.as_view(), name='delete_blog'),
 ]
