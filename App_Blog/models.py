@@ -19,6 +19,10 @@ class Blog(models.Model):
     def __str__(self):
         return self.blog_title
 
+    def save(self):
+        self.slug = slugify(self.blog_title)
+        super(Blog, self).save()
+
 
 class Comment(models.Model):
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='blog_comment')

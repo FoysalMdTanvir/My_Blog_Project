@@ -28,7 +28,7 @@ class CreateBlog(LoginRequiredMixin, CreateView):
         return HttpResponseRedirect(reverse('index'))
 
 
-class BlogList(ListView):
+class BlogList(LoginRequiredMixin, ListView):
     context_object_name = 'blogs'
     model = Blog
     template_name = 'App_Blog/blog_list.html'
